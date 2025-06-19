@@ -19,7 +19,7 @@
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^30.0.2"
   },
   "repository": {
     "type": "git",
