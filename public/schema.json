@@ -1,0 +1,278 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "OTP Custom",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "{{_endpoint}}"
+    }
+  ],
+  "paths": {
+    "/generate": {
+      "parameters": [],
+      "post": {
+        "summary": "Generate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Express"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "411"
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"19b-i/xXfvjqz/2kiBIBHO9GDUJifuE\""
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 19 Jun 2025 16:37:27 GMT"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5"
+              }
+            },
+            "description": "Generate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "secret": {
+                      "type": "object",
+                      "properties": {
+                        "ascii": {
+                          "type": "string",
+                          "format": "style"
+                        },
+                        "hex": {
+                          "type": "string"
+                        },
+                        "base32": {
+                          "type": "string"
+                        },
+                        "otpauth_url": {
+                          "type": "string",
+                          "format": "style"
+                        }
+                      }
+                    },
+                    "qrPath": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/token": {
+      "parameters": [],
+      "get": {
+        "summary": "token",
+        "parameters": [
+          {
+            "name": "secret",
+            "in": "query",
+            "required": false,
+            "example": "{{_secret}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Express"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "18"
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"12-2zYjKqFR0ru2yBnGIXUHRIyRXMM\""
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 19 Jun 2025 16:37:42 GMT"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5"
+              }
+            },
+            "description": "token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "format": "color"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verify": {
+      "parameters": [],
+      "post": {
+        "summary": "Verify",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Express"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/html; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "8"
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"8-rtO4xqfA+72/+lmggkFbE4qHpqY\""
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 19 Jun 2025 16:37:49 GMT"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5"
+              }
+            },
+            "description": "Verify Ok"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "secret": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
