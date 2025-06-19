@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "qr-image": "^3.1.0",
+    "speakeasy": "^2.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"
