@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "cdaa9cc8-f461-49c0-93bd-35ceecab9899",
+		"name": "OTP Custom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44730108"
+	},
+	"item": [
+		{
+			"name": "Generate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+							"if (pm.response.code === 200) {",
+							"    context.set(\"_secret\", pm.response.json().secret.base32);",
+							"    context.set(\"_otpauth_url\", pm.response.json().secret.otpauth_url);",
+							"    context.set(\"_qrPath\", pm.response.json().qrPath);",
+							"    context.set(\"_token\", '');",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\":\"lcortes@customotp.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{_endpoint}}/generate",
+					"host": [
+						"{{_endpoint}}"
+					],
+					"path": [
+						"generate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Generate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":\"lcortes@customotp.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_endpoint}}/generate",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"generate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "411"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19b-i/xXfvjqz/2kiBIBHO9GDUJifuE\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 19 Jun 2025 16:37:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"secret\": {\n        \"ascii\": \"k&G[op(:ZARaBtmT:t[(\",\n        \"hex\": \"6b26475b6f70283a5a41526142746d543a745b28\",\n        \"base32\": \"NMTEOW3POAUDUWSBKJQUE5DNKQ5HIWZI\",\n        \"otpauth_url\": \"otpauth://totp/Custom OTP lcortes@customotp.com?secret=JZGVIRKPK4ZVAT2BKVCFKV2TIJFUUUKVIU2UITSLKE2UQSKXLJEQ\"\n    },\n    \"qrPath\": \"/qrcode?qrurl=otpauth%3A%2F%2Ftotp%2FCustom%20OTP%20lcortes%40customotp.com%3Fsecret%3DJZGVIRKPK4ZVAT2BKVCFKV2TIJFUUUKVIU2UITSLKE2UQSKXLJEQ\"\n}"
+				}
+			]
+		},
+		{
+			"name": "token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+							"if (pm.response.code === 200) {",
+							"    context.set(\"_token\", pm.response.json().token);",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{_endpoint}}/token?secret={{_secret}}",
+					"host": [
+						"{{_endpoint}}"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "secret",
+							"value": "{{_secret}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "token",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_endpoint}}/token?secret={{_secret}}",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"token"
+							],
+							"query": [
+								{
+									"key": "secret",
+									"value": "{{_secret}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12-2zYjKqFR0ru2yBnGIXUHRIyRXMM\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 19 Jun 2025 16:37:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"281933\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"secret\":\"{{_secret}}\",\n    \"token\":\"{{_token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{_endpoint}}/verify",
+					"host": [
+						"{{_endpoint}}"
+					],
+					"path": [
+						"verify"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Verify Ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret\":\"{{_secret}}\",\n    \"token\":\"{{_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_endpoint}}/verify",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8-rtO4xqfA+72/+lmggkFbE4qHpqY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 19 Jun 2025 16:37:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Verified"
+				},
+				{
+					"name": "Verify Fail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret\":\"{{_secret}}\",\n    \"token\":\"{{_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_endpoint}}/verify",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10-lAHtWgrG9B7VbivpXfC5yNpvKIA\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 19 Jun 2025 16:38:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Failed to verify"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "_secret",
+			"value": ""
+		},
+		{
+			"key": "_qrPath",
+			"value": ""
+		},
+		{
+			"key": "_endpoint",
+			"value": "http://localhost:5006",
+			"type": "string"
+		},
+		{
+			"key": "_token",
+			"value": ""
+		},
+		{
+			"key": "_otpauth_url",
+			"value": ""
+		}
+	]
+}
