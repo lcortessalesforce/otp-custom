@@ -11,9 +11,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "balanced-match": "^3.0.1",
+    "base32.js": "^0.1.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "qr-image": "^3.1.0",
+    "qr-image": "^3.2.0",
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
