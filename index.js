@@ -57,11 +57,13 @@ app.get('/token', function (req, res) {
 
 app.post('/verify', (req, res) => {
   const { secret, token } = req.body
-  console.log(secret, token)
-  if (verifyToken(secret, token)) {
-    res.send('Verified')
+  const tokenVerify = verifyToken(secret, token)
+  console.log(secret, token, tokenVerify)
+
+  if (tokenVerify) {
+    res.send({'status':'Verified'})
   } else {
-    res.send('Failed to verify')
+    res.send({'status':'Failed to verify'})
   }
 })
 
